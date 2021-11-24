@@ -1,5 +1,6 @@
 
 import Header from "./Header/Header";
+import TinderCards from "./tinderCard/TinderCard";
 
 function App() {
   return (
@@ -7,7 +8,7 @@ function App() {
       <h1>tinder</h1>
 
       <Header />
-      {/* TinderCard */}
+     <TinderCards />
       {/* SwipeBouttons */}
     </div>
   );
