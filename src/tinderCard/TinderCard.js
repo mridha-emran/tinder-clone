@@ -1,20 +1,19 @@
 
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import TinderCard from "react-tinder-card";
+import axios from "axios"
 import "./tinderCard.css";
 
 function TinderCards(){
-     const[people,setPeople] =useState([
-         {
-             name: "bbac",
-             url :"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+     const[people,setPeople] =useState([]);
 
-     },
-     {
-         name:"ccrc",
-         url :"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
-     }
-     ]);
+     useEffect(()=>{
+        async function getData (){
+           const res =await axios.get("http://localhost:8000/tinder/card");
+           setPeople(res.data)
+        }
+        getData()
+     },[]);
      const swiped =(dirction, nameToDelete) => {
          console.log("removeing:" , nameToDelete)
      }
@@ -37,7 +36,7 @@ function TinderCards(){
             >
              <div 
                 
-             style={{ backgroundImage:`url(${person.url})`}}
+             style={{ backgroundImage:`url(${person.imgUrl})`}}
              className="card">
                  <h3>{person.name} </h3>
              </div>
